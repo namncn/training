@@ -14,20 +14,18 @@
 
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 
-	<?php if ( has_post_thumbnail() ) : ?>
+	<?php if ( has_post_thumbnail() || get_the_title() ) : ?>
 	<header class="entry-header">
-		<?php the_post_thumbnail( 'thumbnail' ); ?>
+
+		<?php the_post_thumbnail( 'medium' ); ?>
+
+		<?php the_title( '<h1 class="entry-title"><a href="' . get_the_permalink() . '">', '</a></h1>' ); ?>
+
 	</header>
 	<?php endif; ?>
 
 	<div class="entry-content">
-
-		<?php the_title( '<h2 class="entry-title"><a href="' . get_the_permalink() . '">', '</a></h2>' ); ?>
-
-		<div class="entry-excerpt">
-			<?php the_excerpt(); ?>
-		</div>
-
+		<?php the_content(); ?>
 	</div>
 
 	<div class="entry-footer">
