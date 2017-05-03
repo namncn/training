@@ -90,7 +90,7 @@ add_action( 'after_setup_theme', 'training_setup' );
  */
 function training_widgets_init() {
 	register_sidebar( array(
-		'name'          => esc_html__( 'Sidebar', 'training' ),
+		'name'          => esc_html__( 'Thanh bên', 'training' ),
 		'id'            => 'sidebar-1',
 		'description'   => esc_html__( 'Add widgets here to appear in your sidebar.', 'training' ),
 		'before_widget' => '<div id="%1$s" class="widget %2$s">',
@@ -99,9 +99,9 @@ function training_widgets_init() {
 		'after_title'   => '</h2>',
 	) );
 
-	register_sidebar( array(
-		'name'          => esc_html__( 'Sidebar 2', 'training' ),
-		'id'            => 'sidebar-2',
+	register_sidebars( 4, array(
+		'name'          => esc_html__( 'Chân trang %d', 'training' ),
+		'id'            => 'footer',
 		'description'   => esc_html__( 'Add widgets here to appear in your sidebar.', 'training' ),
 		'before_widget' => '<div id="%1$s" class="widget %2$s">',
 		'after_widget'  => '</div>',
@@ -169,9 +169,17 @@ function training_scripts() {
 
 	wp_enqueue_style( 'google-fonts', training_fonts_url() );
 
+	wp_enqueue_style( 'fontawesome', get_theme_file_uri( 'assets/css/font-awesome.min.css' ), array(), '4.7.0' );
+
+	wp_enqueue_style( 'bootstrap', get_theme_file_uri( 'assets/css/bootstrap.min.css' ), array(), '3.3.7' );
+
 	wp_enqueue_style( 'training-main', get_theme_file_uri( 'assets/css/main.css' ), array(), '1.0.0' );
 
 	wp_enqueue_script( 'training-script', get_theme_file_uri( 'assets/js/main.js' ), array( 'jquery' ), '1.0.0', true );
+
+	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
+		wp_enqueue_script( 'comment-reply' );
+	}
 }
 add_action( 'wp_enqueue_scripts', 'training_scripts' );
 

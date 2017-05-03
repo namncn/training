@@ -26,8 +26,31 @@
 	<a class="skip-link screen-reader-text" href="#content"><?php _e( 'Skip to content', 'training' ); ?></a>
 
 	<header id="masthead" class="site-header" role="banner">
-		<?php echo esc_html__( 'This is Header', 'training' ); ?>
+
+		<div class="site-branding">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+						<?php the_custom_logo(); ?>
+					</div>
+
+					<div class="col-lg-8 col-md-8 col-sm-6 col-xs-12">
+						<?php esc_html_e( 'Nội dung bên phải Header', 'training' ); ?>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<nav id="site-navigation" class="main-navigation">
+			<?php wp_nav_menu( array(
+				'theme_location'  => 'primary',
+				'container_class' => 'menu-primary-container',
+				'container_id'    => 'primary-menu',
+				'menu_class' => 'menu clearfix',
+			) ); ?>
+		</nav>
 	</header><!-- #masthead -->
 
 	<div class="site-content">
-		<div id="content" class="container">
+		<div id="content" class="container sidebar-left">
+			<div class="row">
