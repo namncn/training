@@ -15,21 +15,33 @@
  * @version 1.0.0
  */
 
-get_header();
+get_header(); ?>
 
-	if ( have_posts() ) :
-		while ( have_posts() ) : the_post();
+	<div id="primary" class="content-area">
+		<main id="main" class="site-main" role="main">
 
-			get_template_part( 'template-parts/content' );
+			<?php
+			if ( have_posts() ) :
+				while ( have_posts() ) : the_post();
 
-		endwhile;
+					get_template_part( 'template-parts/content' );
 
-		the_posts_pagination( array(
-			'prev_text' => '<span class="screen-reader-text">' . esc_html__( 'Trang trước', 'training' ) . '</span>',
-			'next_text' => '<span class="screen-reader-text">' . esc_html__( 'Trang sau', 'training' ) . '</span>',
-			'before_page_number' => '<span class="meta-nav screen-reader-text">' . esc_html__( 'Trang', 'training' ) . ' </span>',
-		) );
-	endif;
+				endwhile;
 
+				the_posts_pagination( array(
+					'prev_text' => '<span class="screen-reader-text">' . esc_html__( 'Trang trước', 'training' ) . '</span>',
+					'next_text' => '<span class="screen-reader-text">' . esc_html__( 'Trang sau', 'training' ) . '</span>',
+					'before_page_number' => '<span class="meta-nav screen-reader-text">' . esc_html__( 'Trang', 'training' ) . ' </span>',
+				) );
+
+			else :
+				get_template_part( 'template-parts/content', 'none' );
+			endif;
+			?>
+
+		</main><!-- #main -->
+	</div><!-- #primary -->
+
+<?php
 get_sidebar();
 get_footer();
