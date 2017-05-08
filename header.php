@@ -27,19 +27,15 @@
 
 	<header id="masthead" class="site-header" role="banner">
 
+		<?php if ( is_front_page() ) : ?>
+		<h1 class="site-branding">
+			<a href="<?php echo esc_url( home_url( '/' ) ); ?>">Twenty <span>by HTML5 UP</span></a>
+		</h1>
+		<?php else : ?>
 		<div class="site-branding">
-			<div class="container">
-				<div class="row">
-					<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-						<?php the_custom_logo(); ?>
-					</div>
-
-					<div class="col-lg-8 col-md-8 col-sm-6 col-xs-12">
-						<?php esc_html_e( 'Nội dung bên phải Header', 'training' ); ?>
-					</div>
-				</div>
-			</div>
+			<a href="<?php echo esc_url( home_url( '/' ) ); ?>">Twenty <span>by HTML5 UP</span></a>
 		</div>
+		<?php endif; ?>
 
 		<nav id="site-navigation" class="main-navigation">
 			<?php wp_nav_menu( array(
@@ -52,5 +48,18 @@
 	</header><!-- #masthead -->
 
 	<div class="site-content">
+
+		<section id="banner">
+			<div class="inner">
+				<header><h2>TWENTY</h2></header>
+
+				<p>This is <strong>Twenty</strong>, a free<br>responsive template<br>by <a href="http://html5up.net">HTML5 UP</a>.</p>
+
+				<footer class="buttons_vertical">
+					<a href="#content" class="button fit scrolly">Tell me more</a>
+				</footer>
+			</div>
+		</section>
+
 		<div id="content" class="container sidebar-left">
 			<div class="row">

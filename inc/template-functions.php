@@ -74,3 +74,13 @@ function training_pingback_header() {
 	}
 }
 add_action( 'wp_head', 'training_pingback_header' );
+
+function training_excerpt_lenght( $lenght ) {
+	return 30;
+}
+add_filter( 'excerpt_length', 'training_excerpt_lenght' );
+
+function training_excerpt_more() {
+	return ' <a href="' . get_the_permalink() . '" class="readmore">' . esc_html__( 'Đọc thêm &raquo;', 'training' ) . '</a>';
+}
+add_filter( 'excerpt_more', 'training_excerpt_more' );

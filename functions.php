@@ -99,6 +99,16 @@ function training_widgets_init() {
 		'after_title'   => '</h2>',
 	) );
 
+	register_sidebar( array(
+		'name'          => esc_html__( 'Trang chủ', 'training' ),
+		'id'            => 'home-section',
+		'description'   => esc_html__( 'Add widgets here to appear in your sidebar.', 'training' ),
+		'before_widget' => '<div id="%1$s" class="widget %2$s">',
+		'after_widget'  => '</div>',
+		'before_title'  => '<h2 class="widget-title">',
+		'after_title'   => '</h2>',
+	) );
+
 	register_sidebars( 4, array(
 		'name'          => esc_html__( 'Chân trang %d', 'training' ),
 		'id'            => 'footer',
@@ -127,7 +137,7 @@ function training_fonts_url() {
 	if ( 'off' !== $libre_franklin ) {
 		$font_families = array();
 
-		$font_families[] = 'Roboto:300,400,500,700|Open Sans:400,600,700|Roboto:300,400,500,700';
+		$font_families[] = 'Lato:300,400,700,900';
 
 		$query_args = array(
 			'family' => urlencode( implode( '|', $font_families ) ),
@@ -200,9 +210,14 @@ add_filter( 'frontpage_template',  'training_front_page_template' );
 /**
  * Additional features to allow styling of the templates.
  */
-require get_theme_file_path( 'inc/template-functions.php' );
+require get_parent_theme_file_path( 'inc/template-functions.php' );
 
 /**
  * Custom template tags for this theme.
  */
 require get_parent_theme_file_path( '/inc/template-tags.php' );
+
+/**
+ * Register Widgets.
+ */
+require get_parent_theme_file_path( '/inc/training-widget-functions.php' );
