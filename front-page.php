@@ -17,9 +17,13 @@ get_header(); ?>
 	<div id="primary" class="content-area">
 		<main id="main" class="site-main" role="main">
 
-		<?php if ( is_active_sidebar( 'home-section' ) ) {
-			dynamic_sidebar( 'home-section' );
-		} ?>
+		<?php
+			if ( have_posts() ) :
+				while ( have_posts() ) : the_post();
+					the_title( '<div>', '</div>' );
+				endwhile;
+			endif;
+		?>
 
 		</main><!-- #main -->
 	</div><!-- #primary -->

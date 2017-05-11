@@ -21,18 +21,22 @@ get_header(); ?>
 		<main id="main" class="site-main" role="main">
 
 			<?php
-			if ( have_posts() ) :
-				while ( have_posts() ) : the_post();
+			$args = array(
+				'post_type'                 => 'book', // Thể loại bài viết được hiển thị.
+				'posts_per_page'        => 10, // Hiển thị bao nhiêu bài viết.
+				'ignore_sticky_posts' => true, // Loại bỏ bài viết được dính.
+			);
 
-					get_template_part( 'template-parts/content' );
+			$training_query = new WP_Query( $args );
+
+			if ( $training_query->have_posts() ) :
+				while ( $training_query->have_posts() ) : $training_query->the_post();
+
+					the_title( '<div><a href="' . get_the_permalink() . '">', '</a></div>' );
 
 				endwhile;
 
-				the_posts_pagination( array(
-					'prev_text' => '<span class="screen-reader-text">' . esc_html__( 'Trang trước', 'training' ) . '</span>',
-					'next_text' => '<span class="screen-reader-text">' . esc_html__( 'Trang sau', 'training' ) . '</span>',
-					'before_page_number' => '<span class="meta-nav screen-reader-text">' . esc_html__( 'Trang', 'training' ) . ' </span>',
-				) );
+				wp_reset_postdata();
 
 			else :
 				get_template_part( 'template-parts/content', 'none' );
